@@ -1,10 +1,9 @@
 # EMS OTG Communication Library
 
-USB accessory communication layer extracted from the EMS7700 test app and packaged as an Android library.
+USB accessory communication layer for the EMS77xx.
 
 ## Modules
-- `ems-otg-lib` — reusable comms library (`groupId=com.changyow.ems`, `artifactId=ems-otg-lib`).
-- `app` — sample UI wired to the library.
+- `ems-otg-lib` — reusable comms library
 
 ## Add to your project
 ```gradle
@@ -12,11 +11,6 @@ USB accessory communication layer extracted from the EMS7700 test app and packag
 repositories {
     maven {
         url = uri("https://maven.pkg.github.com/ChangYow/EMS77xx-lib")
-        credentials {
-            // Use a GitHub personal access token with read:packages scope
-            username = findProperty("gpr.user") ?: System.getenv("GPR_USER")
-            password = findProperty("gpr.key")  ?: System.getenv("GPR_KEY")
-        }
     }
     google()
     mavenCentral()
@@ -81,24 +75,4 @@ class MyActivity : AppCompatActivity() {
                  android:resource="@xml/accessory_filter" />
   </application>
   ```
-- Request permission and handle detaches in your app (see `app/src/main/java/com/changyow/ems7700test/MainActivity.kt`).
-
-## Building
-```bash
-./gradlew :ems-otg-lib:assembleRelease   # build AAR
-```
-
-## Publishing (prepared, not executed)
-Credentials/URL are read from Gradle properties or env vars:
-- `EMS_MAVEN_URL` — repository URL (defaults to `build/maven-repo` if unset)
-- `EMS_MAVEN_USER`, `EMS_MAVEN_PASSWORD` — optional credentials
-- `EMS_MAVEN_ALLOW_INSECURE` — set to `true` to allow http
-
-Run when ready:
-```bash
-./gradlew :ems-otg-lib:publish
-```
-This will publish the `release` AAR + sources JAR and generated POM to the configured repo.
-
-## Versioning
-Library version is set in `ems-otg-lib/build.gradle` (`version = "1.0.0"`). Update group/artifact/version as needed before publishing.
+- Request permission and handle detaches in your app
